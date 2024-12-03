@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Status Bebas Tanggungan</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    /* Styling Umum */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Background Section */
+    .hero_area {
+      background: url("images/hero-bg.png") no-repeat center center;
+      background-size: cover;
+      min-height: 100vh;
+      padding-top: 70px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      padding: 1rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .navbar .nav-link {
+      color: #fff;
+      margin: 0 10px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active {
+      color: #f39c12;
+    }
+
+    .btn-logout {
+      background-color: #f39c12;
+      color: #fff;
+      padding: 8px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-logout:hover {
+      background-color: #d35400;
+      color: #fff;
+    }
+
+    /* Box Styling */
+    .content-box {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      max-width: 800px;
+      width: 90%;
+      margin: 30px auto;
+      backdrop-filter: blur(5px);
+    }
+
+    /* Badge Styling */
+    .badge.status-pending {
+      background-color: #f39c12;
+      color: #fff;
+    }
+
+    .badge.status-approved {
+      background-color: #27ae60;
+      color: #fff;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .navbar .nav-link {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Hero Section -->
+  <div class="hero_area">
+    <!-- Navbar -->
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <span>JTI DEPENDENTS</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="tanggungan.html">Tanggungan</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="helpdesk.html">Status</a>
+              </li>
+            </ul>
+            <a href="login.html" class="btn-logout">Logout</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <section>
+      <div class="content-box">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="text-center">Status Pengajuan Bebas Tanggungan</h4>
+          <a href="index.html" class="btn btn-secondary">← Back</a>
+        </div>
+
+        <!-- Table -->
+        <table id="ticketTable" class="display nowrap" style="width:100%">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Judul</th>
+              <th>Kategori</th>
+              <th>Tanggal Input</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Example Data -->
+            <tr>
+              <td>01</td>
+              <td>Permohonan Surat Kompensasi</td>
+              <td>Kompensasi</td>
+              <td>2024-11-01</td>
+              <td><span class="badge status-pending">Pending</span></td>
+            </tr>
+            <tr>
+              <td>02</td>
+              <td>Sertifikat Seminar Nasional HMTI</td>
+              <td>SKKM</td>
+              <td>2024-11-26</td>
+              <td><span class="badge status-pending">Pending</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#ticketTable').DataTable({
+        responsive: true,
+        pageLength: 10,
+        language: {
+          emptyTable: "No data available in table",
+          paginate: {
+            previous: "&laquo;",
+            next: "&raquo;"
+          }
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

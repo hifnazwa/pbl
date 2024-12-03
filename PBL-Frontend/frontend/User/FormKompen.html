@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surat Bebas Kompensasi</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/FormStyle.css"> <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container">
+        <a class="navbar-brand" href="index.html">
+          <span>Administrasi Kompensasi</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Tombol Back di pojok kanan atas -->
+        </div>        
+      </nav>
+      <!-- Tombol Back -->
+      <a href="tanggungan.html" class="btn-back">&lt; Back</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container mt-4">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Form Surat Bebas Kompensasi</h5>
+        <hr>
+        <form id="compensationForm">
+          <!-- Nama Mahasiswa -->
+          <div class="mb-3">
+            <label for="namaMahasiswa" class="form-label">Nama Mahasiswa <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="namaMahasiswa" placeholder="Masukkan Nama Lengkap" required>
+          </div>
+
+          <!-- NIM -->
+          <div class="mb-3">
+            <label for="nimMahasiswa" class="form-label">NIM <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="nimMahasiswa" placeholder="Masukkan NIM" required>
+          </div>
+
+          <!-- Program Studi -->
+          <div class="mb-3">
+            <label for="programStudi" class="form-label">Program Studi <span class="text-danger">*</span></label>
+            <select class="form-select" id="programStudi" required>
+              <option value="">Pilih Program Studi...</option>
+              <option value="Informatika">Teknik Informatika</option>
+              <option value="Sistem Informasi">Sistem Informasi Bisnis</option>
+            </select>
+          </div>
+
+          <!-- Durasi Kompensasi -->
+          <div class="mb-3">
+            <label for="durasiKompensasi" class="form-label">Durasi Kompensasi (jam) <span class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="durasiKompensasi" placeholder="Masukkan durasi kompensasi" required>
+          </div>
+
+          <!-- Lampiran Dokumen (Surat Keterangan) -->
+          <div class="mb-3">
+            <label for="lampiranDokumen" class="form-label">Lampiran Dokumen (Surat Keterangan Bebas Kompensasi)</label>
+            <input type="file" class="form-control" id="lampiranDokumen">
+            <small class="text-muted">Format file yang diperbolehkan: PDF, maksimal 2 MB</small>
+          </div>
+
+          <!-- Tombol Submit -->
+          <button type="submit" class="btn btn-primary"><i class="bi bi-upload"></i> Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-container">
+    <!-- Notifikasi Berhasil -->
+    <div id="successToast" class="toast align-items-center text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-header">
+          <strong class="me-auto">Proses kompensasi berhasil</strong>
+        </div>
+        <div class="toast-body">
+          Data kompensasi Anda berhasil disubmit! Terima kasih atas pengajuan kompensasi. Surat bebas kompensasi Anda akan segera diproses.
+        </div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Menangani submit form
+    const form = document.getElementById('compensationForm');
+    const successToast = new bootstrap.Toast(document.getElementById('successToast'));
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Menghentikan form untuk tidak melakukan reload halaman
+
+      // Cek jika semua input telah diisi
+      if (form.checkValidity()) {
+        successToast.show(); // Menampilkan toast notification
+      } else {
+        alert('Harap lengkapi semua data dengan benar.');
+      }
+    });
+  </script>
+</body>
+</html>
